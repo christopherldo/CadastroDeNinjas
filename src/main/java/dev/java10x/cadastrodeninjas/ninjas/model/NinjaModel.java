@@ -1,13 +1,16 @@
-package dev.java10x.cadastrodeninjas;
+package dev.java10x.cadastrodeninjas.ninjas.model;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.List;
 
+import dev.java10x.cadastrodeninjas.missions.model.MissionModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,14 +19,18 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String nome;
+
+    private String name;
     private String email;
     private LocalDate birthDate;
 
-    public NinjaModel() {}
+    @ManyToMany
+    private List<MissionModel> missions;
 
-    public NinjaModel(String nome, String email, LocalDate birthDate) {
-        this.nome = nome;
+    protected NinjaModel() {}
+
+    public NinjaModel(String name, String email, LocalDate birthDate) {
+        this.name = name;
         this.email = email;
         this.birthDate = birthDate;
     }
@@ -32,12 +39,12 @@ public class NinjaModel {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -66,13 +73,12 @@ public class NinjaModel {
         return periodo.getYears();
     }
 
+    public List<MissionModel> getMissions() {
+        return missions;
+    }
+
     @Override
     public String toString() {
-        return "NinjaModel{" +
-               "id='" + id + '\'' +
-               ", nome='" + nome + '\'' +
-               ", email='" + email + '\'' +
-               ", birthDate=" + birthDate +
-               '}';
+        return "NinjaModel [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + "]";
     }
 }

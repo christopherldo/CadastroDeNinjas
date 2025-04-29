@@ -1,4 +1,4 @@
-package dev.java10x.cadastrodeninjas;
+package dev.java10x.cadastrodeninjas.ninjas.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
